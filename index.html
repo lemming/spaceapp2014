@@ -44,7 +44,7 @@
 		<div id="info_panel">
 			<div class="inner">
 				<h2>Summary</h2>
-				<div id="summary">
+				<div class="summary">
 					<div class="summary-item">
 						<div class="icon icon-temperature"></div>
 						<div class="value odometer">0</div>
@@ -108,12 +108,14 @@
 		<div id="main">
 			<h2 style="color:#b8f139">Medical Garden</h2>
 			<div id="medical" style="height: 300px">
-				<img src="img/medical.png" alt="">
+				<a href="javascript:void(0)">
+					<img src="img/medical.png" alt="">
+				</a>
 			</div>
 
 			<h2 style="color:#ff8b62">Edible Plants Garden</h2>
 			<div id="edible" style="height: 500px">
-				<a href="javascript:void(0)" id="load_card">					
+				<a href="javascript:void(0)">					
 					<img src="img/edible.png" alt="">
 				</a>
 			</div>
@@ -136,13 +138,13 @@
 	$('document').ready(function() {
 		setTimeout(function() {
 			var summaryData = [21, 81, 155, 1700];
-			$('#summary .value').each(function(index, elem) {
+			$('.summary .value').each(function(index, elem) {
 				elem.innerHTML = summaryData[index];
 			});
 		}, 500);
 	});
 
-	$('#load_card').click(function() {
+	$('#edible a').click(function() {
 		var panelsToReverse = $('#main, .inner');
 		panelsToReverse.addClass('reverse');
 
@@ -152,6 +154,22 @@
 			$('#additional_panel .inner').load('plant-right.html');
 
 			$('#main').load('card.html', function() {
+				panelsToReverse.removeClass('reverse');
+			});
+		}, 2000);
+	});
+
+
+	$('#medical a').click(function() {
+		var panelsToReverse = $('#main, .inner');
+		panelsToReverse.addClass('reverse');
+
+		setTimeout(function() {
+			$('#info_panel .inner').load('plant-left.html');
+
+			$('#additional_panel .inner').load('plant-right.html');
+
+			$('#main').load('medical.html', function() {
 				panelsToReverse.removeClass('reverse');
 			});
 		}, 2000);

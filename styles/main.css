@@ -209,7 +209,7 @@ h2 {
 #notifications-container {
   position: absolute;
   height: 100px;
-  left: 450px;
+  left: 400px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   top: 50px;
   width: 1100px; }
@@ -303,17 +303,18 @@ h2 {
 
 .container {
   padding-top: 200px;
-  width: 2000px;
+  width: 1900px;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
   flex-direction: row;
   overflow: hidden; }
 
-#summary {
-  background: url(../bg-info_panel.png) no-repeat;
+.summary {
+  background: url(../img/bg-info.png) no-repeat;
   width: 203px;
-  height: 203px; }
+  height: 203px;
+  margin-bottom: 50px; }
 
 .summary-item > div {
   display: inline-block; }
@@ -355,9 +356,9 @@ h2 {
     content: '%'; }
 
 #main {
-  width: 1200px;
-  padding-left: 100px;
-  margin-right: 100px;
+  width: 1150px;
+  padding-left: 50px;
+  margin-right: 50px;
   -moz-animation: fadein 2s;
   -webkit-animation: fadein 2s;
   animation: fadein 2s; }
