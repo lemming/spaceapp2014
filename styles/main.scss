@@ -1,0 +1,279 @@
+@import 'animations.scss';
+@import 'icons';
+
+$primary_color: #5db4af;
+$default_color: #939393;
+
+body {
+	background: url(../img/bg.png);
+	font-family: 'Roboto', sans-serif;
+	color: $default_color;
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+	position: relative;
+}
+
+h2 {
+	font-size: 48px;
+	line-height: 50px;
+	margin-bottom: 50px;
+	margin-top: 0;
+	color: $primary_color;
+}
+
+#logo {
+	padding: 50px;
+}
+
+#header {
+	position: absolute;
+	-moz-animation: slidetop 1s;
+	-webkit-animation: slidetop 1s;
+	animation: slidetop 1s;
+}
+
+#notifications-container {
+	position: absolute;
+	height: 100px;
+	left: 450px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	top: 50px;
+	width: 1100px;
+}
+
+#notifications {
+	width: 100%;
+
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+
+	position: absolute;
+	top: -200px;
+
+	-moz-animation: slidetop 1s;
+	-webkit-animation: slidetop 1s;
+	animation: slidetop 1s;
+
+	-moz-animation-delay: .5s;
+	-webkit-animation-delay: .5s;
+	animation-delay: .5s;
+
+	-moz-animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+#notifications-border-top {
+	width: 100%;
+	position: absolute;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	top: -200px;
+	-moz-animation: slidetop 1s;
+	-webkit-animation: slidetop 1s;
+	animation: slidetop 1s;
+
+	-moz-animation-delay: 1s;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+
+	-moz-animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.notification {
+	height: 100px;
+	padding-top: 16px;
+	.value {
+		display: inline-block;
+
+		.number {
+			color: $primary_color;
+			font-size: 36px;
+		}
+		.caption {
+			font-size: 12px;
+		}
+	}
+}
+
+.notification-icon {
+	display: inline-block;
+	width: 54px;
+	height: 54px;
+	vertical-align: baseline;
+}
+
+#info_panel, #additional_panel {
+	width: 350px;
+	font-weight: 100;
+	display: -webkit-flex;
+	display: flex;
+
+	.inner {
+		background-color: #1d1c18;
+		width: 350px;
+		padding: 50px;
+	}
+}
+
+#info_panel {
+	.inner {
+		-moz-animation: slide-left 1s;
+		-webkit-animation: slide-left 1s;
+		animation: slide-left 1s;
+
+		&.reverse {
+			-moz-animation: slide-left-back 1s;
+			-webkit-animation: slide-left-back 1s;
+			animation: slide-left-back 1s;
+
+			-moz-animation-fill-mode: forwards;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+	}
+
+	h2 {
+		font-weight: 100;
+	}
+}
+
+#additional_panel {
+	.inner {
+		overflow: hidden;
+		-moz-animation: slide-right 1s;
+		-webkit-animation: slide-right 1s;
+		animation: slide-right 1s;
+
+		&.reverse {
+			-moz-animation: slide-right-back 1s;
+			-webkit-animation: slide-right-back 1s;
+			animation: slide-right-back 1s;
+
+			-moz-animation-fill-mode: forwards;
+			-webkit-animation-fill-mode: forwards;
+			animation-fill-mode: forwards;
+		}
+	}
+}
+
+.container {
+	padding-top: 200px;
+
+	width: 2000px;
+
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-flex-direction: row;
+	flex-direction: row;
+
+	overflow: hidden;
+}
+
+#summary {
+	background: url(../bg-info_panel.png) no-repeat;
+	width: 203px;
+	height: 203px;
+}
+
+.summary-item > div {
+	display: inline-block;
+}
+
+.summary-item .icon {
+	width: 32px;
+	margin-left: 12px;
+}
+
+.summary-item .value {
+	width: 111px;
+	padding-right: 15px;
+	text-align: right;
+	font-size: 32px;
+}
+
+.summary-item .unit {
+	width: 40px;
+}
+
+#atmosphere {
+	-moz-animation: slide-left 1s;
+	-webkit-animation: slide-left 1s;
+	animation: slide-left 1s;
+}
+
+.atmosphere-items {
+	margin-left: 36px;
+}
+
+.atmosphere-item {
+	display: table-row;
+}
+
+.atmosphere-item > div {
+	display: table-cell;
+}
+
+.atmosphere-item .name {
+	width: 72px;
+}
+
+.atmosphere-item .value {
+	color: $primary_color;
+	text-align: right;
+	&:after {
+		content: '%';
+	}
+}
+
+#main {
+	width: 1200px;
+	padding-left: 100px;
+	margin-right: 100px;
+	-moz-animation: fadein 2s;
+	-webkit-animation: fadein 2s;
+	animation: fadein 2s;
+	
+	&.reverse {
+		-moz-animation: fadeout 1s;
+		-webkit-animation: fadeout 1s;
+		animation: fadeout 1s;
+
+		-moz-animation-fill-mode: forwards;
+		-webkit-animation-fill-mode: forwards;
+		animation-fill-mode: forwards;
+	}
+
+	.caption {
+		font-size: 16px;
+		font-weight: 100;
+		color: $default_color;
+	}
+
+	.card {
+		background: url(../img/card.png) center no-repeat;
+		height: 800px;
+	}
+}
+
+#canvas {
+	position: absolute;
+	left: 80px;
+	top: 100px;
+}
+
+#plant_info {
+	font-weight: 300;
+	font-size: 20px;
+
+	td+td {
+		color: $primary_color;
+	}
+}

@@ -1,0 +1,34 @@
+.icon {
+  display: inline-block;
+  width: 28px;
+  height: 28px; }
+
+.icon-temperature {
+  background-image: url(../img/icon-temperature.png); }
+
+.icon-water {
+  background-image: url(../img/icon-water.png); }
+
+.icon-energy {
+  background-image: url(../img/icon-energy.png); }
+
+.icon-light {
+  background-image: url(../img/icon-light.png); }
+
+.icon-microscope {
+  background-image: url(../img/icon-microscope.png); }
+
+.icon-task {
+  background-image: url(../img/icon-task.png); }
+
+.icon-talk {
+  background-image: url(../img/icon-talk.png); }
+
+.icon-food {
+  background-image: url(../img/icon-food.png); }
+
+.icon-ruler {
+  background-image: url(../img/icon-ruler.png); }
+
+.icon-calendar {
+  background-image: url(../img/icon-calendar.png); }

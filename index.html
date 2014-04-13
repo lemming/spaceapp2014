@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Green MARS</title>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="odometer-theme-default.css">
+</head>
+<body>
+	<div id="header">
+		<div id="logo">
+			<img src="img/logo.png" alt="Green MARS">
+		</div>
+		<div id="notifications-container">
+			<div id="notifications-border-top"></div>
+			<div id="notifications">
+				<div class="notification">
+					<div class="notification-icon icon-microscope"></div>	
+					<div class="value">
+						<div class="number">2 updates</div>
+						<div class="caption">for research</div>
+					</div>
+				</div>
+				<div class="notification">
+					<div class="notification-icon icon-task"></div>	
+					<div class="value">
+						<div class="number">1 new</div>
+						<div class="caption">task from Oleg Makarov</div>
+					</div>
+				</div>
+				<div class="notification">
+					<div class="notification-icon icon-talk"></div>	
+					<div class="value">
+						<div class="number">7 new</div>
+						<div class="caption">messages</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div id="info_panel">
+			<div class="inner">
+				<h2>Summary</h2>
+				<div id="summary">
+					<div class="summary-item">
+						<div class="icon icon-temperature"></div>
+						<div class="value odometer">0</div>
+						<div class="unit">°С</div>
+					</div>
+					<div class="summary-item">
+						<div class="icon icon-water"></div>
+						<div class="value odometer">0</div>
+						<div class="unit">%</div>
+					</div>
+					<div class="summary-item">
+						<div class="icon icon-energy"></div>
+						<div class="value odometer">0</div>
+						<div class="unit">mW</div>
+					</div>
+					<div class="summary-item">
+						<div class="icon icon-light"></div>
+						<div class="value odometer">0</div>
+						<div class="unit">lx</div>
+					</div>
+				</div>
+
+				<h2>Atmosphere</h2>
+
+				<img src="img/atmosphere.png" alt="" style="margin-left:30px">
+
+				<div id="atmosphere">
+					<div class="atmosphere-items">
+						
+						<div class="atmosphere-item">
+							<div class="name">N<sub>2</sub></div>
+							<div class="value">78.0845%</div>
+						</div>
+						<div class="atmosphere-item">
+							<div class="name">O<sub>2</sub></div>
+							<div class="value">20.9466%</div>
+						</div>
+						<div class="atmosphere-item">
+							<div class="name">Ar</div>
+							<div class="value">0.9340%</div>
+						</div>
+						<div class="atmosphere-item">
+							<div class="name">CO<sub>2</sub></div>
+							<div class="value">0.0397%</div>
+						</div>
+						<div class="atmosphere-item">
+							<div class="name">Ne</div>
+							<div class="value">0.0018%</div>
+						</div>
+						<div class="atmosphere-item">
+							<div class="name">He</div>
+							<div class="value">0.0005%</div>
+						</div>
+					</div>
+				</div>
+
+				<img src="img/buttons-left.png" alt="" style="position: absolute; bottom: 50px">
+			</div>
+		</div>
+
+		<div id="main">
+			<h2 style="color:#b8f139">Medical Garden</h2>
+			<div id="medical" style="height: 300px">
+				<img src="img/medical.png" alt="">
+			</div>
+
+			<h2 style="color:#ff8b62">Edible Plants Garden</h2>
+			<div id="edible" style="height: 500px">
+				<a href="javascript:void(0)" id="load_card">					
+					<img src="img/edible.png" alt="">
+				</a>
+			</div>
+
+			<h2>Aesthic Garden <span class="caption">No events today</span></h2>
+		</div>
+
+		<div id="additional_panel">
+			<div class="inner">
+				<img src="img/oleg.png">
+				<img src="img/buttons.png" alt="" style="position: absolute; bottom: 50px">
+			</div>
+		</div>	
+	</div>
+
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  	<script src="three.min.js"></script>
+	<script src="odometer.min.js"></script>
+	<script>
+	$('document').ready(function() {
+		setTimeout(function() {
+			var summaryData = [21, 81, 155, 1700];
+			$('#summary .value').each(function(index, elem) {
+				elem.innerHTML = summaryData[index];
+			});
+		}, 500);
+	});
+
+	$('#load_card').click(function() {
+		var panelsToReverse = $('#main, .inner');
+		panelsToReverse.addClass('reverse');
+
+		setTimeout(function() {
+			$('#info_panel .inner').load('plant-left.html');
+
+			$('#additional_panel .inner').load('plant-right.html');
+
+			$('#main').load('card.html', function() {
+				panelsToReverse.removeClass('reverse');
+			});
+		}, 2000);
+	});
+	</script>
+</body>
+</html>

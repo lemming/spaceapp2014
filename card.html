@@ -1,0 +1,145 @@
+<div class="card">
+	<div id="canvas"></div>
+</div>
+<img src="img/progressbar.png" alt="" style="margin-left: 99px; margin-top: 61px">
+
+<script>
+var container, scene, renderer, camera, light, clock, loader;
+var WIDTH, HEIGHT, VIEW_ANGLE, ASPECT, NEAR, FAR;
+
+container = document.querySelector('#canvas');
+
+clock = new THREE.Clock();
+
+WIDTH = 1000,
+HEIGHT = 800;
+
+VIEW_ANGLE = 45,
+ASPECT = WIDTH / HEIGHT,
+NEAR = 1,
+FAR = 10000;
+
+scene = new THREE.Scene();
+
+renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+
+renderer.setSize(WIDTH, HEIGHT);
+renderer.shadowMapEnabled = true;
+renderer.shadowMapSoft = true;
+renderer.shadowMapType = THREE.PCFShadowMap;
+renderer.shadowMapAutoUpdate = true;
+
+container.appendChild(renderer.domElement);
+
+camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+
+camera.position.set(0, 100, 200);
+camera.rotation.x = -Math.PI / 12;
+
+scene.add(camera);
+
+light = new THREE.DirectionalLight(0xffffff);
+
+light.position.set(0, 100, 60);
+light.castShadow = true;
+light.shadowCameraLeft = -60;
+light.shadowCameraTop = -60;
+light.shadowCameraRight = 60;
+light.shadowCameraBottom = 60;
+light.shadowCameraNear = 1;
+light.shadowCameraFar = 1000;
+light.shadowBias = -.0001
+light.shadowMapWidth = light.shadowMapHeight = 1024;
+light.shadowDarkness = .7;
+
+scene.add(light);
+
+loader = new THREE.JSONLoader();
+var mesh, mesh2;
+
+loader.load('models/bamboo.js', function (geometry, materials) {
+	var material = new THREE.MeshLambertMaterial({
+		map: THREE.ImageUtils.loadTexture('/textures/bamboo.jpg'),   
+		colorAmbient: [0.480000026226044, 0.480000026226044, 0.480000026226044],
+		colorDiffuse: [0.480000026226044, 0.480000026226044, 0.480000026226044],
+		colorSpecular: [0.8999999761581421, 0.8999999761581421, 0.8999999761581421]
+	});
+
+	material = new THREE.MeshBasicMaterial({
+		wireframe: true,
+		color: 'bisque'
+	});
+
+	mesh = new THREE.Mesh(
+	geometry,
+	material
+	);
+
+	mesh.receiveShadow = true;
+	mesh.castShadow = true;
+	mesh.rotation.y = -Math.PI/5;
+
+	var radius  = 5,
+		segments = 64,
+		material = new THREE.LineBasicMaterial( { color: 0xFF0000 } ),
+		geometry = new THREE.CircleGeometry( radius, segments);
+
+	// Remove center vertex
+	geometry.vertices.shift();
+
+	mesh2 = new THREE.Line( geometry, material );
+	mesh3 = new THREE.Line(new THREE.CircleGeometry( radius - 1, segments), material);
+
+	mesh2.add(mesh3);
+
+	mesh2.position.y = 95;
+	mesh2.position.x = -30;
+
+	mesh.add(mesh2);
+
+	scene.add(mesh);
+	render(); 
+});
+
+function updateLine() {
+	var selectedObject = scene.getObjectByName("line");
+	scene.remove(selectedObject);
+
+
+
+	mesh2.geometry.computeBoundingBox();
+
+	var boundingBox = mesh2.geometry.boundingBox;
+
+	var position = new THREE.Vector3();
+	position.subVectors( boundingBox.max, boundingBox.min );
+	position.multiplyScalar( 0.5 );
+	position.add( boundingBox.min );
+
+	position.applyMatrix4( mesh2.matrixWorld );
+
+	var geometry = new THREE.Geometry();
+	material = new THREE.LineBasicMaterial( { color: 0x971414 } );
+	geometry.vertices.push(new THREE.Vector3(-100, 120, 0));
+	geometry.vertices.push(new THREE.Vector3(-50, 120, 0));
+	geometry.vertices.push(new THREE.Vector3(position.x, position.y, position.z));
+
+	var line = new THREE.Line(geometry, material);
+	line.name = "line";
+
+	scene.add(line);
+}
+
+function render() {
+	var time = clock.getElapsedTime();
+	mesh.rotation.y += .01;
+	mesh2.rotation.y += .1;
+
+
+	updateLine();
+
+	renderer.render(scene, camera);
+	requestAnimationFrame(render);
+}
+
+</script>
