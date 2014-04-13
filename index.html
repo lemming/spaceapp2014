@@ -10,7 +10,7 @@
 <body>
 	<div id="header">
 		<div id="logo">
-			<img src="img/logo.png" alt="Green MARS">
+			<img src="img/logo.png" alt="Green MARS Module">
 		</div>
 		<div id="notifications-container">
 			<div id="notifications-border-top"></div>
@@ -165,14 +165,18 @@
 		panelsToReverse.addClass('reverse');
 
 		setTimeout(function() {
-			$('#info_panel .inner').load('plant-left.html');
+			$('#info_panel .inner').load('medical-left.html');
 
-			$('#additional_panel .inner').load('plant-right.html');
+			$('#additional_panel .inner').load('medical-right.html');
 
 			$('#main').load('medical.html', function() {
 				panelsToReverse.removeClass('reverse');
 			});
 		}, 2000);
+	});
+
+	$('#logo').click(function() {
+		location.reload();	
 	});
 	</script>
 </body>

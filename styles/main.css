@@ -197,8 +197,14 @@ h2 {
   margin-top: 0;
   color: #5db4af; }
 
+h3 {
+  font-size: 36px;
+  font-weight: 300; }
+
 #logo {
-  padding: 50px; }
+  padding: 50px;
+  z-index: 1;
+  cursor: pointer; }
 
 #header {
   position: absolute;
@@ -359,6 +365,7 @@ h2 {
   width: 1150px;
   padding-left: 50px;
   margin-right: 50px;
+  font-weight: 300;
   -moz-animation: fadein 2s;
   -webkit-animation: fadein 2s;
   animation: fadein 2s; }
@@ -387,3 +394,16 @@ h2 {
   font-size: 20px; }
   #plant_info td + td {
     color: #5db4af; }
+
+.plants-list {
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 20px;
+  margin-top: -50px; }
+  .plants-list li {
+    padding: 12px; }
+    .plants-list li.active {
+      background-color: #5db4af;
+      color: white; }
